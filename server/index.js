@@ -4,6 +4,8 @@ const db = require('../database');
 const app = express()
 const port = 3000
 
+const controller = require('../database/controller.js');
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 

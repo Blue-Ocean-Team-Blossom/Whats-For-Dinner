@@ -13,6 +13,6 @@ const seed = async() => {
 
 seed()
 .catch(err => {
-  console.log(`databse unable to populate, ${err}`)
+  console.log(`database unable to populate, ${err}`)
   sequelize.close()
 })

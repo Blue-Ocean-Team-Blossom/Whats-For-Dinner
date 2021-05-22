@@ -19,7 +19,15 @@ app.put('/pantry', (req, res)=>{
   res.end()
 });
 app.post('/pantry', (req, res)=>{
-  res.end()
+  let pantryObj = {...req.body};
+  controller.postPantry(pantryObj)
+    .then(()=>{
+      res.sendStatus(201);
+    })
+    .catch((err)=>{
+      console.log(err);
+      res.sendStatus(500);
+    })
 });
 app.delete('/pantry', (req, res)=>{
   res.end()

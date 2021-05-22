@@ -28,8 +28,6 @@ app.put('/pantry', (req, res)=>{
       res.sendStatus(400);
     })
 
-  // call controller method
-  res.end()
 });
 
 app.post('/pantry', (req, res)=>{

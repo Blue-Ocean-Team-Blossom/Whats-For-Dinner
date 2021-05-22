@@ -27,7 +27,6 @@ app.get('/pantry', (req, res)=>{
 });
 
 app.put('/pantry', (req, res)=>{
-
   controller.updatePantry(req.body.pantryId, req.body)
     .then(() => {
       res.sendStatus(200);
@@ -36,7 +35,6 @@ app.put('/pantry', (req, res)=>{
       console.error(err);
       res.sendStatus(400);
     })
-
 });
 
 app.post('/pantry', (req, res)=>{
@@ -54,7 +52,15 @@ app.post('/pantry', (req, res)=>{
 });
 
 app.delete('/pantry', (req, res)=>{
-  res.end()
+  // assumes sends id in a body
+  controller.deletePantry(req.body.id)
+    .then(()=>{
+      res.sendStatus(200)
+    })
+    .catch((err)=>{
+      console.log(err);
+      res.sendStatus(500);
+    })
 });
 
 app.listen(port, () => {

@@ -3,7 +3,14 @@ const {Pantry} = require('./models.js');
 
 const postPantry = (pantryObj) => {
   return Pantry.create({...pantryObj});
-}
+};
+const deletePantry = (id) => {
+  return Pantry.destroy({
+    where: {
+      id: id
+    }
+  });
+};
 
 const getPantry = (id) => {
   return Pantry.findAll({
@@ -17,4 +24,4 @@ const updatePantry = (pantryId, updateObj) => {
   return Pantry.update(updateObj, {where: {id: pantryId}});
 }
 
-module.exports = {postPantry, updatePantry, getPantry};
+module.exports = {postPantry, updatePantry, getPantry, deletePantry};

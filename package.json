@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Blue-Ocean-Team-Blossom/Whats-For-Dinner-API#readme",
   "dependencies": {
+    "dotenv": "^10.0.0",
+    "pg": "^8.6.0",
     "postgresql": "0.0.1",
     "sequelize": "^6.6.2"
   }

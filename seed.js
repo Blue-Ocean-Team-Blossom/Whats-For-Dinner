@@ -1,11 +1,12 @@
 const sequelize = require('./database/index.js');
 const {Pantry} = require('./database/models.js');
 
-var PantryItems = [];
+var PantryItems = ['salmon', 'duck', 'eggs'];
 const seed = async() => {
   await sequelize.sync({force: true})
   await Promise.all(PantryItems.map(pantryItem => {
-    return Pantry.create(pantryItem)
+    let PantryObj = {ingredient: pantryItem, quantity: 0};
+    return Pantry.create(PantryObj)
   }))
   console.log('database seeded successfully')
   sequelize.close()

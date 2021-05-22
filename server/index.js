@@ -18,7 +18,7 @@ app.get('/pantry', (req, res)=>{
 });
 
 app.put('/pantry', (req, res)=>{
-  res.end()
+  res.end();
 });
 
 app.post('/pantry', (req, res)=>{
@@ -36,7 +36,14 @@ app.post('/pantry', (req, res)=>{
 });
 
 app.delete('/pantry', (req, res)=>{
-  res.end()
+  controller.deletePantry(req.body.id)
+    .then(()=>{
+      res.sendStatus(200)
+    })
+    .catch((err)=>{
+      console.log(err);
+      res.sendStatus(500);
+    })
 });
 
 app.listen(port, () => {

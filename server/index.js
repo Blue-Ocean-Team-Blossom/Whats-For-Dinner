@@ -36,6 +36,7 @@ app.post('/pantry', (req, res)=>{
 });
 
 app.delete('/pantry', (req, res)=>{
+  // assumes sends id in a body
   controller.deletePantry(req.body.id)
     .then(()=>{
       res.sendStatus(200)

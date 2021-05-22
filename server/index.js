@@ -12,14 +12,19 @@ app.use(express.urlencoded({extended: true}));
 app.get('/recipes', (req, res)=>{
   res.end()
 });
+
 app.get('/pantry', (req, res)=>{
   res.end()
 });
+
 app.put('/pantry', (req, res)=>{
   res.end()
 });
+
 app.post('/pantry', (req, res)=>{
   let pantryObj = {...req.body};
+  // expect ingredient, ingredientId,quantity, userId
+  // assumes req.body comes in shape of {ingredient, ingredientId, quantity, and userId}
   controller.postPantry(pantryObj)
     .then(()=>{
       res.sendStatus(201);
@@ -27,8 +32,9 @@ app.post('/pantry', (req, res)=>{
     .catch((err)=>{
       console.log(err);
       res.sendStatus(500);
-    })
+    });
 });
+
 app.delete('/pantry', (req, res)=>{
   res.end()
 });

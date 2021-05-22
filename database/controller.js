@@ -5,4 +5,12 @@ const postPantry = (pantryObj) => {
   return Pantry.create({...pantryObj});
 }
 
-module.exports = {postPantry};
+const getPantry = (id) => {
+  return Pantry.findAll({
+    where: {
+      userId: id
+    }
+  });
+}
+
+module.exports = {postPantry, getPantry};

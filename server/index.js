@@ -14,7 +14,16 @@ app.get('/recipes', (req, res)=>{
 });
 
 app.get('/pantry', (req, res)=>{
-  res.end()
+  let id = req.query.id;
+  console.log(req.body);
+  controller.getPantry(id)
+    .then(ingredients => {
+      res.status(200).send(ingredients)
+    })
+    .catch(err => {
+      console.log(`unable to get ingredients, ${err}`)
+      res.status(500).send()
+    })
 });
 
 app.put('/pantry', (req, res)=>{

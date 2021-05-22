@@ -27,7 +27,16 @@ app.get('/pantry', (req, res)=>{
 });
 
 app.put('/pantry', (req, res)=>{
-  res.end()
+
+  controller.updatePantry(req.body.pantryId, req.body)
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(() => {
+      console.error(err);
+      res.sendStatus(400);
+    })
+
 });
 
 app.post('/pantry', (req, res)=>{

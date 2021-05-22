@@ -13,4 +13,8 @@ const getPantry = (id) => {
   });
 }
 
-module.exports = {postPantry, getPantry};
+const updatePantry = (pantryId, updateObj) => {
+  return Pantry.update(updateObj, {where: {id: pantryId}});
+}
+
+module.exports = {postPantry, updatePantry, getPantry};

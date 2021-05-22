@@ -5,4 +5,8 @@ const postPantry = (pantryObj) => {
   return Pantry.create({...pantryObj});
 }
 
-module.exports = {postPantry};
+const updatePantry = (pantryId, updateObj) => {
+  return Pantry.update(updateObj, {where: {id: pantryId}});
+}
+
+module.exports = {postPantry, updatePantry};

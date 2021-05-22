@@ -18,6 +18,17 @@ app.get('/pantry', (req, res)=>{
 });
 
 app.put('/pantry', (req, res)=>{
+
+  controller.updatePantry(req.body.pantryId, req.body)
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(() => {
+      console.error(err);
+      res.sendStatus(400);
+    })
+
+  // call controller method
   res.end()
 });
 

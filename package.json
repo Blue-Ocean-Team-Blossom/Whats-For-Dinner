@@ -1,0 +1,25 @@
+{
+  "name": "whats-for-dinner-api",
+  "version": "1.0.0",
+  "description": "Server and database for WhatsForDinner App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blue-Ocean-Team-Blossom/Whats-For-Dinner-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Blue-Ocean-Team-Blossom/Whats-For-Dinner-API/issues"
+  },
+  "homepage": "https://github.com/Blue-Ocean-Team-Blossom/Whats-For-Dinner-API#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "pg": "^8.6.0",
+    "postgresql": "0.0.1",
+    "sequelize": "^6.6.2"
+  }
+}

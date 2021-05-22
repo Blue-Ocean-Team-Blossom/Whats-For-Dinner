@@ -12,4 +12,16 @@ const deletePantry = (id) => {
   });
 };
 
-module.exports = {postPantry, deletePantry};
+const getPantry = (id) => {
+  return Pantry.findAll({
+    where: {
+      userId: id
+    }
+  });
+}
+
+const updatePantry = (pantryId, updateObj) => {
+  return Pantry.update(updateObj, {where: {id: pantryId}});
+}
+
+module.exports = {postPantry, updatePantry, getPantry, deletePantry};

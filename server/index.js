@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const db = require('../database');
-const axios = require('axios');
 
 const app = express()
 const port = 3000
@@ -28,7 +27,7 @@ app.get('/recipes', (req, res)=>{
     },
     headers: {
       'x-rapidapi-key': process.env.RAPID_API_KEY,
-      'x-rapidapi-host': process.env.RAPID_API_URL
+      'x-rapidapi-host': process.env.RAPID_API_HOST
     }
   })
     .then(recipes => {

@@ -19,7 +19,6 @@ app.get('/recipes/:recipeId', (req, res)=>{
   const options = {
     method: 'GET',
     url: process.env.RAPID_API_URL + `/recipes/${recipeId}/information`,
-    params: {url: 'http://www.melskitchencafe.com/the-best-fudgy-brownies/'},
     headers: {
       'x-rapidapi-key': process.env.RAPID_API_KEY,
       'x-rapidapi-host': process.env.RAPID_API_HOST

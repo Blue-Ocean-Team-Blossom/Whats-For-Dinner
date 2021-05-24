@@ -67,10 +67,12 @@ app.get('/recipes/pantry', (req, res) => {
         })
         .catch(err => {
           console.log(`unable to get recipes by ingredients, ${err}`)
+          res.end()
         })
     })
     .catch(err => {
       console.log(`unable to get ingredients, ${err}`)
+      res.end()
     })
 })
 

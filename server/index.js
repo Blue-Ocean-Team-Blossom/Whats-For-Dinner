@@ -1,5 +1,7 @@
+require('dotenv').config();
 const express = require('express');
 const db = require('../database');
+const axios = require('axios');
 
 const app = express()
 const port = 3000
@@ -61,6 +63,29 @@ app.delete('/pantry', (req, res)=>{
       console.log(err);
       res.sendStatus(500);
     })
+});
+
+app.get('/ingredients', (req, res) => {
+  // console.log(req.query);
+  let {query} = req.query;
+  console.log(query);
+
+  axios({
+    method: 'get',
+    url: `${process.env.RAPID_API_URL}/food/ingredients/search`,
+    params: {
+      query: query,
+      apiKey: process.env.API_KEY
+    }
+  })
+  .then((results) => {
+    res.json(results.data.results);
+    // console.log(results.data.results);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.sendStatus(400);
+  })
 });
 
 app.listen(port, () => {

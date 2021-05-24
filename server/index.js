@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('../database');
-
+const axios = require('axios');
 const app = express()
 const port = 3000
 
@@ -11,6 +11,28 @@ app.use(express.urlencoded({extended: true}));
 
 app.get('/recipes', (req, res)=>{
   res.end()
+});
+
+app.get('/recipes/:recipeId', (req, res)=>{
+  let recipeId = parseInt(req.params.recipeId);
+
+  const options = {
+    method: 'GET',
+    url: process.env.RAPID_API_URL + `/recipes/${recipeId}/information`,
+    params: {url: 'http://www.melskitchencafe.com/the-best-fudgy-brownies/'},
+    headers: {
+      'x-rapidapi-key': process.env.RAPID_API_KEY,
+      'x-rapidapi-host': process.env.RAPID_API_HOST
+    }
+  };
+
+  axios.request(options).then((response) => {
+    console.log(response.data);
+    res.send(response.data);
+  }).catch((err) => {
+    console.log(err);
+    res.sendStatus(500);
+  });
 });
 
 app.get('/pantry', (req, res)=>{

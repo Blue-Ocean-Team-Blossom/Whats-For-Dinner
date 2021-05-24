@@ -20,7 +20,7 @@ app.get('/recipes', (req, res)=>{
     params: {
       ingredients: ingredients,
       number: 20,
-      limitLicencse: true,
+      limitLicense: true,
       ranking: 1,
       ignorePantry: true,
       apiKey: process.env.API_KEY
@@ -37,6 +37,44 @@ app.get('/recipes', (req, res)=>{
       console.log(`unable to get recipes by ingredients, ${err}`)
     })
 });
+
+app.get('/recipes/pantry', (req, res) => {
+  let id = req.query.id;
+  console.log(req.body);
+  controller.getPantry(id)
+    .then(ingredients => {
+      ingredients = ingredients.map(data => {
+        return data.dataValues.ingredient
+      }).join(',')
+      axios({
+        method: 'get',
+        url: `${process.env.RAPID_API_URL}/recipes/findByIngredients`,
+        params: {
+          ingredients: ingredients,
+          number: 20,
+          limitLicense: true,
+          ranking: 1,
+          ignorePantry: true,
+          apiKey: process.env.API_KEY
+        },
+        headers: {
+          'x-rapidapi-key': process.env.RAPID_API_KEY,
+          'x-rapidapi-host': process.env.RAPID_API_HOST
+        }
+      })
+        .then(recipes => {
+          res.json(recipes.data)
+        })
+        .catch(err => {
+          console.log(`unable to get recipes by ingredients, ${err}`)
+          res.end()
+        })
+    })
+    .catch(err => {
+      console.log(`unable to get ingredients, ${err}`)
+      res.end()
+    })
+})
 
 app.get('/recipes/:recipeId', (req, res)=>{
   let recipeId = parseInt(req.params.recipeId);

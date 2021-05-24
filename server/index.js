@@ -21,6 +21,9 @@ app.get('/recipes/:recipeId', (req, res)=>{
   const options = {
     method: 'GET',
     url: process.env.RAPID_API_URL + `/recipes/${recipeId}/information`,
+    params: {
+      apiKey: process.env.API_KEY
+    },
     headers: {
       'x-rapidapi-key': process.env.RAPID_API_KEY,
       'x-rapidapi-host': process.env.RAPID_API_HOST

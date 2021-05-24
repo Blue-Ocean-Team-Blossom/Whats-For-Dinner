@@ -1,6 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const db = require('../database');
+const axios = require('axios');
 
 const app = express()
 const port = 3000
@@ -35,6 +37,30 @@ app.get('/recipes', (req, res)=>{
     .catch(err => {
       console.log(`unable to get recipes by ingredients, ${err}`)
     })
+});
+
+app.get('/recipes/:recipeId', (req, res)=>{
+  let recipeId = parseInt(req.params.recipeId);
+
+  const options = {
+    method: 'GET',
+    url: process.env.RAPID_API_URL + `/recipes/${recipeId}/information`,
+    params: {
+      apiKey: process.env.API_KEY
+    },
+    headers: {
+      'x-rapidapi-key': process.env.RAPID_API_KEY,
+      'x-rapidapi-host': process.env.RAPID_API_HOST
+    }
+  };
+
+  axios.request(options).then((response) => {
+    console.log(response.data);
+    res.send(response.data);
+  }).catch((err) => {
+    console.log(err);
+    res.sendStatus(500);
+  });
 });
 
 app.get('/pantry', (req, res)=>{
@@ -85,6 +111,34 @@ app.delete('/pantry', (req, res)=>{
       console.log(err);
       res.sendStatus(500);
     })
+});
+
+app.get('/ingredients', (req, res) => {
+  // console.log(req.query);
+  let {query} = req.query;
+
+  // console.log(`${process.env.RAPID_API_URL}/food/ingredients/search`);
+  axios({
+    method: 'get',
+    url: `${process.env.RAPID_API_URL}/food/ingredients/autocomplete`,
+    params: {
+      query: query,
+      metaInformation: true,
+      apiKey: process.env.API_KEY
+    },
+    headers: {
+      'x-rapidapi-key': process.env.RAPID_API_KEY,
+      'x-rapidapi-host': process.env.RAPID_API_HOST
+    }
+  })
+  .then((results) => {
+    res.json(results.data);
+    console.log(results.data);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.sendStatus(400);
+  })
 });
 
 app.listen(port, () => {

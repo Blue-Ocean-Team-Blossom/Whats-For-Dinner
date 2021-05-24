@@ -20,7 +20,7 @@ app.get('/recipes', (req, res)=>{
     params: {
       ingredients: ingredients,
       number: 20,
-      limitLicencse: true,
+      limitLicense: true,
       ranking: 1,
       ignorePantry: true,
       apiKey: process.env.API_KEY
@@ -52,7 +52,7 @@ app.get('/recipes/pantry', (req, res) => {
         params: {
           ingredients: ingredients,
           number: 20,
-          limitLicencse: true,
+          limitLicense: true,
           ranking: 1,
           ignorePantry: true,
           apiKey: process.env.API_KEY
@@ -67,10 +67,12 @@ app.get('/recipes/pantry', (req, res) => {
         })
         .catch(err => {
           console.log(`unable to get recipes by ingredients, ${err}`)
+          res.end()
         })
     })
     .catch(err => {
       console.log(`unable to get ingredients, ${err}`)
+      res.end()
     })
 })
 

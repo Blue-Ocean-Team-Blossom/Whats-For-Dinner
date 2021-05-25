@@ -153,6 +153,60 @@ app.delete('/pantry', (req, res)=>{
     })
 });
 
+// ENDPOINTS FOR /grocery
+
+app.get('/grocery', (req, res)=>{
+  let id = req.query.id;
+  console.log(req.body);
+  controller.getGrocery(id)
+    .then(ingredients => {
+      res.status(200).send(ingredients)
+    })
+    .catch(err => {
+      console.log(`unable to get ingredients, ${err}`)
+      res.status(500).send()
+    })
+});
+
+app.put('/grocery', (req, res)=>{
+  controller.updateGrocery(req.body.groceryId, req.body)
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(() => {
+      console.error(err);
+      res.sendStatus(400);
+    })
+});
+
+app.post('/grocery', (req, res)=>{
+  let groceryObj = {...req.body};
+  // expect ingredient, ingredientId,quantity, userId
+  // assumes req.body comes in shape of {ingredient, ingredientId, quantity, and userId}
+  controller.postGrocery(groceryObj)
+    .then(()=>{
+      res.sendStatus(201);
+    })
+    .catch((err)=>{
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+
+app.delete('/grocery', (req, res)=>{
+  // assumes sends id in a body
+  controller.deleteGrocery(req.body.id)
+    .then(()=>{
+      res.sendStatus(200)
+    })
+    .catch((err)=>{
+      console.log(err);
+      res.sendStatus(500);
+    })
+});
+
+// ENDPOINTS FOR /ingredients
+
 app.get('/ingredients', (req, res) => {
   // console.log(req.query);
   let {query} = req.query;

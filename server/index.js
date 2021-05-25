@@ -12,6 +12,8 @@ const controller = require('../database/controller.js');
 require('../config/passport');
 app.use(require('../routes/index.js'));
 
+const auth = require('../routes/auth');
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(function(req, res, next) {
@@ -20,6 +22,8 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
   next();
 });
+// We will enable this when we want to require an Authorization header to access endpoints
+//app.use(auth.required);
 app.use(session({ secret: 'passport-tutorial', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
 
 app.get('/recipes', (req, res)=>{

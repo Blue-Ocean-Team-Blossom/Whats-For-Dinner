@@ -46,7 +46,6 @@ app.get('/recipes', (req, res)=>{
 
 app.get('/recipes/pantry', (req, res) => {
   let id = req.query.id;
-  console.log(req.body);
   controller.getPantry(id)
     .then(ingredients => {
       ingredients = ingredients.map(data => {
@@ -98,7 +97,6 @@ app.get('/recipes/:recipeId', (req, res)=>{
   };
 
   axios.request(options).then((response) => {
-    console.log(response.data);
     res.send(response.data);
   }).catch((err) => {
     console.log(err);
@@ -108,7 +106,6 @@ app.get('/recipes/:recipeId', (req, res)=>{
 
 app.get('/pantry', (req, res)=>{
   let id = req.query.id;
-  console.log(req.body);
   controller.getPantry(id)
     .then(ingredients => {
       res.status(200).send(ingredients)
@@ -176,7 +173,6 @@ app.get('/ingredients', (req, res) => {
   })
   .then((results) => {
     res.json(results.data);
-    console.log(results.data);
   })
   .catch((err) => {
     console.error(err);

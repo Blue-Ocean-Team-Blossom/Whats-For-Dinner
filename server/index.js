@@ -2,11 +2,15 @@ require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const db = require('../database');
+const session = require('express-session');
 
 const app = express()
 const port = 3000
 
 const controller = require('../database/controller.js');
+
+require('../config/passport');
+app.use(require('../routes/index.js'));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -16,6 +20,7 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
   next();
 });
+app.use(session({ secret: 'passport-tutorial', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
 
 app.get('/recipes', (req, res)=>{
   let ingredients = req.query.ingredients

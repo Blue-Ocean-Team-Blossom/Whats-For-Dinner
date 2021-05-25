@@ -76,6 +76,18 @@ router.post('/login', auth.optional, (req, res, next) => {
   })(req, res, next);
 });
 
-router.get('/current', auth.required, (req, res, next) => {});
+router.get('/current', auth.required, (req, res, next) => {
+  const { payload: { id } } = req;
+
+  return User.findOne({where: {id: id}})
+    .then((user) => {
+      if(!user) {
+        return res.sendStatus(400);
+      }
+
+      return res.json({ user: user.toAuthJSON() });
+    });
+
+});
 
 module.exports = router;

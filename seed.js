@@ -1,15 +1,23 @@
 const sequelize = require('./database/index.js');
-const {Pantry} = require('./database/models.js');
+const {Pantry, Favorite} = require('./database/models.js');
 
 var PantryItems = ['cheese', 'bacon', 'apples'];
+var favoriteItems = [{
+  "recipeId": 662428,
+  "title": "Sweet & Spicy White Cheddar Cheese Ball with apples & Bacon",
+  "image": "https://spoonacular.com/recipeImages/662428-312x231.jpg",
+}];
 const seed = async() => {
   await sequelize.sync({force: true})
   await Promise.all(PantryItems.map(pantryItem => {
     let pantryObj = {ingredient: pantryItem}
-    return Pantry.create(pantryObj)
+    return Pantry.create(pantryObj);
   }))
-  console.log('database seeded successfully')
-  sequelize.close()
+  await Promise.all(favoriteItems.map(favoriteItem => {
+    return Favorite.create(favoriteItem);
+  }))
+  console.log('database seeded successfully');
+  sequelize.close();
 }
 
 seed()

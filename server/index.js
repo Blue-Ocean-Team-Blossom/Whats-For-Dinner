@@ -234,6 +234,8 @@ app.get('/ingredients', (req, res) => {
   })
 });
 
+// ENDPOINTS FOR /favorites
+
 app.get('/favorites', (req, res)=>{
   controller.getFavorite(req.query.id)
     .then(favorites => {

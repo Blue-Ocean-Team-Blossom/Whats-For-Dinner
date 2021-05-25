@@ -40,4 +40,25 @@ const getFavorite = (id) => {
   });
 };
 
+const postGrocery = (grocObj) => {
+  return Grocery.create({...grocObj});
+};
+const deleteGrocery = (id) => {
+  return Grocery.destroy({
+    where: {
+      id: id
+    }
+  });
+};
+const getGrocery = (id) => {
+  return Grocery.findAll({
+    where: {
+      userId: id
+    }
+  });
+};
+const updateGrocery = (groceryId, updateObj) => {
+  return Grocery.update(updateObj, {where: {id: groceryId}});
+};
+
 module.exports = {postPantry, updatePantry, getPantry, deletePantry};

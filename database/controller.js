@@ -61,4 +61,4 @@ const updateGrocery = (groceryId, updateObj) => {
   return Grocery.update(updateObj, {where: {id: groceryId}});
 };
 
-module.exports = {postPantry, updatePantry, getPantry, deletePantry};
+module.exports = {postPantry, updatePantry, getPantry, deletePantry, postGrocery, updateGrocery, getGrocery, deleteGrocery, postFavorite, getFavorite, deleteFavorite};

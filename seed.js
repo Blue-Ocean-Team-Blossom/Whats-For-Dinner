@@ -9,10 +9,10 @@ var favoriteItems = [{
 }];
 const seed = async() => {
   await sequelize.sync({force: true})
-  await Promise.all(PantryItems.map(pantryItem => {
-    let pantryObj = {ingredient: pantryItem}
-    return Pantry.create(pantryObj);
-  }))
+  // await Promise.all(PantryItems.map(pantryItem => {
+  //   let pantryObj = {ingredient: pantryItem}
+  //   return Pantry.create(pantryObj);
+  // }))
   await Promise.all(favoriteItems.map(favoriteItem => {
     return Favorite.create(favoriteItem);
   }))

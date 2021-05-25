@@ -46,7 +46,6 @@ app.get('/recipes', (req, res)=>{
 
 app.get('/recipes/pantry', (req, res) => {
   let id = req.query.id;
-  console.log(req.body);
   controller.getPantry(id)
     .then(ingredients => {
       ingredients = ingredients.map(data => {
@@ -98,7 +97,6 @@ app.get('/recipes/:recipeId', (req, res)=>{
   };
 
   axios.request(options).then((response) => {
-    console.log(response.data);
     res.send(response.data);
   }).catch((err) => {
     console.log(err);
@@ -108,7 +106,6 @@ app.get('/recipes/:recipeId', (req, res)=>{
 
 app.get('/pantry', (req, res)=>{
   let id = req.query.id;
-  console.log(req.body);
   controller.getPantry(id)
     .then(ingredients => {
       res.status(200).send(ingredients)
@@ -230,12 +227,46 @@ app.get('/ingredients', (req, res) => {
   })
   .then((results) => {
     res.json(results.data);
-    console.log(results.data);
   })
   .catch((err) => {
     console.error(err);
     res.sendStatus(400);
   })
+});
+
+// ENDPOINTS FOR /favorites
+
+app.get('/favorites', (req, res)=>{
+  controller.getFavorite(req.query.id)
+    .then(favorites => {
+      res.status(200).send(favorites)
+    })
+    .catch(err => {
+      console.log(`unable to get favorites, ${err}`)
+      res.status(500).send()
+    })
+});
+app.post('/favorites', (req, res)=>{
+  let favObj = {...req.body};
+  // assumes req.body comes in shape of {recipeId, title, image, and userId}
+  controller.postFavorite(favObj)
+    .then(()=>{
+      res.sendStatus(201);
+    })
+    .catch((err)=>{
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+app.delete('/favorites', (req, res)=>{
+  controller.deleteFavorite(req.body.id)
+    .then(()=>{
+      res.sendStatus(200)
+    })
+    .catch((err)=>{
+      console.log(err);
+      res.sendStatus(500);
+    })
 });
 
 app.listen(port, () => {

@@ -184,6 +184,39 @@ app.get('/ingredients', (req, res) => {
   })
 });
 
+app.get('/favorites', (req, res)=>{
+  controller.getFavorite(req.query.id)
+    .then(favorites => {
+      res.status(200).send(favorites)
+    })
+    .catch(err => {
+      console.log(`unable to get favorites, ${err}`)
+      res.status(500).send()
+    })
+});
+app.post('/favorites', (req, res)=>{
+  let favObj = {...req.body};
+  // assumes req.body comes in shape of {recipeId, title, image, and userId}
+  controller.postFavorite(favObj)
+    .then(()=>{
+      res.sendStatus(201);
+    })
+    .catch((err)=>{
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+app.delete('/favorites', (req, res)=>{
+  controller.deleteFavorite(req.body.id)
+    .then(()=>{
+      res.sendStatus(200)
+    })
+    .catch((err)=>{
+      console.log(err);
+      res.sendStatus(500);
+    })
+});
+
 app.listen(port, () => {
   console.log(`listening on port ${port}`)
 })

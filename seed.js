@@ -9,7 +9,7 @@ var favoriteItems = [{
   "userId": 1
 }];
 var GroceryItems = ['wine'];
-var users = [{username: 'garrett', password: 'garrettpw'}];
+var users = [{username: 'garrett', password: 'garrettpw'}, {username: 'peter', password: 'peterpw'}];
 const seed = async() => {
   await sequelize.sync({force: true})
   await Promise.all(users.map(user => {

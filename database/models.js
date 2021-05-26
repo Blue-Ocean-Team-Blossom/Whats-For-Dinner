@@ -64,11 +64,12 @@ const Grocery = sequelize.define('grocery', {
     type: Sequelize.INTEGER
   },
   quantity: {
-    type: Sequelize.FLOAT(10, 3)
+    type: Sequelize.FLOAT(10, 3),
+    defaultValue: 1
   },
-  // units: {
-  //   type: Sequelize.STRING
-  // },
+  units: {
+    type: Sequelize.STRING
+  },
   userId: {
     type: Sequelize.INTEGER,
     // defaultValue: 1,
@@ -123,11 +124,12 @@ const Pantry = sequelize.define('pantry', {
     type: Sequelize.INTEGER
   },
   quantity: {
-    type: Sequelize.FLOAT(10, 3)
+    type: Sequelize.FLOAT(10, 3),
+    defaultValue: 1
   },
-  // units: {
-  //   type: Sequelize.STRING
-  // },
+  units: {
+    type: Sequelize.STRING
+  },
   userId: {
     type: Sequelize.INTEGER,
     // defaultValue: 1,

@@ -18,11 +18,11 @@ const seed = async() => {
     return finalUser.save();
   }))
   await Promise.all(PantryItems.map(pantryItem => {
-    let pantryObj = {ingredient: pantryItem, quantity: 5, ingredientId: 1234, userId: 1};
+    let pantryObj = {ingredient: pantryItem, quantity: 5, ingredientId: 1234, userId: 1, units: 'cups'};
     return Pantry.create(pantryObj);
   }))
   await Promise.all(GroceryItems.map(groceryItem => {
-    let groceryObj = {ingredient: groceryItem, quantity: 5, ingredientId: 1234, userId: 1};
+    let groceryObj = {ingredient: groceryItem, quantity: 5, ingredientId: 1234, userId: 1, units: 'tbsp'};
     return Grocery.create(groceryObj);
   }))
   await Promise.all(favoriteItems.map(favoriteItem => {

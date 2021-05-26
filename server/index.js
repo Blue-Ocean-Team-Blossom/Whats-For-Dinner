@@ -23,7 +23,8 @@ app.use(function(req, res, next) {
   next();
 });
 // We will enable this when we want to require an Authorization header to access endpoints
-app.use(auth.required);
+// app.use(auth.required);
+app.use(auth.optional);
 app.use(session({ secret: 'passport-tutorial', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
 
 app.get('/recipes', (req, res)=>{
@@ -54,8 +55,10 @@ app.get('/recipes', (req, res)=>{
 });
 
 app.get('/recipes/pantry', (req, res) => {
-
-  let id = req.payload.id;
+  let id = req.query.id;
+  if (req.payload) {
+    id = req.payload.id;
+  }
   controller.getPantry(id)
     .then(ingredients => {
       ingredients = ingredients.map(data => {
@@ -115,8 +118,11 @@ app.get('/recipes/:recipeId', (req, res)=>{
 });
 
 app.get('/pantry', (req, res)=>{
-
-  let id = req.payload.id;
+  let id = req.query.id;
+  if (req.payload) {
+    id = req.payload.id;
+  }
+  console.log(id);
   controller.getPantry(id)
     .then(ingredients => {
       res.status(200).send(ingredients)
@@ -140,7 +146,9 @@ app.put('/pantry', (req, res)=>{
 
 app.post('/pantry', (req, res)=>{
   let pantryObj = {...req.body};
-  pantryObj.userId = req.payload.id;
+  if (req.payload) {
+    pantryObj.userId = req.payload.id;
+  }
   console.log(pantryObj);
   // expect ingredient, ingredientId,quantity, userId
   // assumes req.body comes in shape of {ingredient, ingredientId, quantity, and userId}
@@ -169,8 +177,10 @@ app.delete('/pantry', (req, res)=>{
 // ENDPOINTS FOR /grocery
 
 app.get('/grocery', (req, res)=>{
-  let id = req.payload.id;
-
+  let id = req.query.id;
+  if (req.payload) {
+    id = req.payload.id;
+  }
   controller.getGrocery(id)
     .then(ingredients => {
       res.status(200).send(ingredients)
@@ -194,8 +204,9 @@ app.put('/grocery', (req, res)=>{
 
 app.post('/grocery', (req, res)=>{
   let groceryObj = {...req.body};
-  groceryObj.userId = req.payload.id;
-
+  if (req.payload) {
+    grocObj.userId = req.payload.id;
+  }
   // expect ingredient, ingredientId,quantity, userId
   // assumes req.body comes in shape of {ingredient, ingredientId, quantity, and userId}
   controller.postGrocery(groceryObj)
@@ -252,7 +263,11 @@ app.get('/ingredients', (req, res) => {
 // ENDPOINTS FOR /favorites
 
 app.get('/favorites', (req, res)=>{
-  controller.getFavorite(req.payload.id)
+  let id = req.query.id;
+  if (req.payload) {
+    id = req.payload.id;
+  }
+  controller.getFavorite(id)
     .then(favorites => {
       res.status(200).send(favorites)
     })
@@ -263,7 +278,9 @@ app.get('/favorites', (req, res)=>{
 });
 app.post('/favorites', (req, res)=>{
   let favObj = {...req.body};
-  favObj.userId = req.payload.id;
+  if (req.payload) {
+    favObj.userId = req.payload.id;
+  }
   // assumes req.body comes in shape of {recipeId, title, image, and userId}
   controller.postFavorite(favObj)
     .then(()=>{

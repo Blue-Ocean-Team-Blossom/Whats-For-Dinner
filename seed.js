@@ -1,5 +1,5 @@
 const sequelize = require('./database/index.js');
-const {Pantry, Favorite, Grocery} = require('./database/models.js');
+const {Pantry, Favorite, Grocery, User} = require('./database/models.js');
 
 var PantryItems = ['cheese', 'bacon', 'apples'];
 var favoriteItems = [{
@@ -8,6 +8,7 @@ var favoriteItems = [{
   "image": "https://spoonacular.com/recipeImages/662428-312x231.jpg",
 }];
 var GroceryItems = ['wine'];
+var users = [{username: 'user'}];
 const seed = async() => {
   await sequelize.sync({force: true})
   await Promise.all(PantryItems.map(pantryItem => {
@@ -20,6 +21,9 @@ const seed = async() => {
   }))
   await Promise.all(favoriteItems.map(favoriteItem => {
     return Favorite.create(favoriteItem);
+  }))
+  await Promise.all(users.map(user => {
+    return User.create(user);
   }))
   console.log('database seeded successfully');
   sequelize.close();

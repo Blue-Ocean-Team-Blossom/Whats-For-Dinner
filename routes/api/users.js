@@ -36,7 +36,10 @@ router.post('/', auth.optional, (req, res, next) => {
 
   return finalUser.save()
     .then(() => res.json({ user: finalUser.toAuthJSON() }))
-    .catch((err) => console.error(err))
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(400);
+    })
 });
 
 router.post('/login', auth.optional, (req, res, next) => {

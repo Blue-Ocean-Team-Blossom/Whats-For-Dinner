@@ -61,7 +61,6 @@ const getFavorite = (id) => {
 };
 
 const postGrocery = (grocObj) => {
-  return Grocery.create({...grocObj});
   return Grocery.findOne({where: {ingredient: grocObj.ingredient, units: grocObj.units, userId: grocObj.userId}})
     .then((result)=>{
       if (!result) {

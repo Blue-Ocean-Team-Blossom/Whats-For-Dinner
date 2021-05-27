@@ -62,6 +62,19 @@ const getFavorite = (id) => {
 
 const postGrocery = (grocObj) => {
   return Grocery.create({...grocObj});
+  return Grocery.findOne({where: {ingredient: grocObj.ingredient, units: grocObj.units, userId: grocObj.userId}})
+    .then((result)=>{
+      if (!result) {
+        console.log('post!');
+        return Grocery.create({...grocObj});
+      } else {
+        console.log('update!');
+        grocObj.quantity = grocObj.quantity + result.quantity;
+        let id = result.id;
+        console.log(grocObj);
+        return updatePantry(id, grocObj);
+      }
+    })
 };
 
 const deleteGrocery = (id) => {

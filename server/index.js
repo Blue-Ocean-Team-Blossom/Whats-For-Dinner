@@ -149,7 +149,6 @@ app.post('/pantry', (req, res)=>{
   if (req.payload) {
     pantryObj.userId = req.payload.id;
   }
-  console.log(pantryObj);
   // expect ingredient, ingredientId,quantity, userId
   // assumes req.body comes in shape of {ingredient, ingredientId, quantity, and userId}
   controller.postPantry(pantryObj)

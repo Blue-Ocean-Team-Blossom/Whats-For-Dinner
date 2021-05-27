@@ -2,7 +2,22 @@ const sequelize = require('./index.js');
 const {Pantry, Favorite, Grocery} = require('./models.js');
 
 const postPantry = (pantryObj) => {
-  return Pantry.create({...pantryObj});
+  // if Obj already 'exists' in the database (i.e. same ingredient, units, and userId)
+  // update that object instead.
+  return Pantry.findOne({where: {ingredient: pantryObj.ingredient, units: pantryObj.units, userId: pantryObj.userId}})
+    .then((result)=>{
+      if (!result) {
+        console.log('post!');
+        return Pantry.create({...pantryObj});
+      } else {
+        console.log('update!');
+        pantryObj.quantity = pantryObj.quantity + result.quantity;
+        let id = result.id;
+        console.log(pantryObj);
+        return updatePantry(id, pantryObj);
+      }
+    })
+  // return Pantry.create({...pantryObj});
 };
 
 const deletePantry = (id) => {

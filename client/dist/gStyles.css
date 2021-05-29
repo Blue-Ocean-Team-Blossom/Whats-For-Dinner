@@ -1,0 +1,143 @@
+html, body {
+  background-color: #1c1c1c;
+  height: 100%;
+  font-family: 'Lato', sans-serif;
+  color: white;
+  overflow: hidden;
+}
+
+h1 {
+  margin-bottom: 0.25vw;
+}
+
+#app_title {
+  margin-left: 0.9vw;
+  font-size: 2vw;
+}
+
+.mainContainer {
+  display: grid;
+  grid-template-columns: minmax(10vw, 20vw) 1fr;
+}
+
+.mainSubContainer {
+  grid-column-start: 2;
+  grid-column-end: 2;
+}
+
+.mainSubContainer h1 {
+  margin-top: 0;
+}
+
+.navContainer {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  column-width: 10vw;
+
+}
+
+.btn {
+  background: linear-gradient(to top, grey 50%, #0D0D0D 50%);
+
+  border: solid 0.25vw #4F5902;
+  background-size: 100% 200%;
+  background-position: top left;
+  transition: all .2s ease-out;
+
+  position: relative;
+  display: block;
+  height: 4vw;
+  width: 15vw;
+  margin: 0.6vw 0.4vw;
+  padding: 0.25vw 0.25vw;
+  font-weight: 700;
+  font-size: 1.2vw;
+  letter-spacing: 0.2vw;
+  color: white;
+  border-radius: 0.3vw;
+  text-transform: uppercase;
+  outline: 0;
+  overflow:hidden;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-position: bottom left;
+}
+
+.btn:active {
+  transform: scale(0.90);
+}
+
+a:link {
+  color: lightblue;
+}
+
+a:visited {
+  color: lightgoldenrodyellow;
+}
+
+.login {
+  display: grid;
+  justify-content: center;
+  margin: 1.5vw;
+}
+
+.loginBox {
+  display: grid;
+  justify-content: center;
+  border: #4F5902 solid 0.25vw;
+  border-radius: 0.35vw;
+  width: 30vw;
+  padding: 1.5vw;
+}
+
+.switch_login_signup {
+  font-size: 1vw;
+}
+
+.input {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 0.2vw solid #4F5902;
+  outline: 0;
+  font-size: 1.3rem;
+  color: white;
+  padding: 0.5vw 0;
+  background: transparent;
+  transition: white 0.2s;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: white;
+  transition: background-color 10000s;
+}
+
+.hide {
+  display: none;
+}
+
+.loginItem {
+  display: block;
+  display: flex;
+  justify-content: center;
+}
+
+.move {
+  animation: linear infinite;
+  animation-name: saladMan;
+  animation-duration: 5s ;
+}
+
+@keyframes saladMan {
+  0% {
+    left: 0;
+  }
+  50% {
+    left: 100%
+  }
+  100% {
+    left: 0
+  }
+}

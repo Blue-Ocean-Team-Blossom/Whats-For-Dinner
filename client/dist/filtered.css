@@ -1,0 +1,99 @@
+.search-box{
+ transform: translate(-5%, -10%);
+ width: 75%;
+ background: #2f3640;
+ height: 6vh;
+ border-radius: 40px;
+ width: 20vw;
+}
+
+.search-txt {
+ border: none;
+ background: none;
+ outline: none;
+ padding: 0;
+ color: white;
+ font-size: 1vw;
+ transition: 0.4s;
+ line-height: 6vh;
+ font-weight: bold;
+ width: 20vw;
+ padding: 0 1vw;
+}
+
+.ingredientList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  height: 30vh;
+}
+
+.ingredient:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.ingredient:active {
+  transform: scale(0.90);
+}
+
+.filteredContainer {
+  display: grid;
+  flex-direction: column;
+  justify-content: flex-start;
+  grid-template-columns: 65% 35%;
+  column-gap: 2rem;
+}
+
+.filter-button {
+  background-color: white;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  padding-top: 10px;
+}
+
+.filterIngredientList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  height: 28vh;
+  overflow-y: scroll;
+}
+
+.filterIngredient:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.filterIngredient:active {
+  transform: scale(0.90);
+}
+
+.filterclose {
+  width: 1vw;
+  height: 1vw;
+  opacity: 0.7;
+}
+.filterclose:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.filterclose:before, .filterclose:after {
+  content: ' ';
+  height: 1.05vw;
+  width: 0.052vw;
+  background-color: white;
+}
+.filterclose:before {
+  transform: rotate(45deg);
+}
+.filterclose:after {
+  transform: rotate(-45deg);
+}

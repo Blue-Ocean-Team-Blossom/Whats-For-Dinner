@@ -1,0 +1,159 @@
+.recipes {
+  text-align: center;
+  font-size: 3vw;
+}
+
+.no_recipes_text {
+  text-align: center;
+  font-size: 1.5vw;
+}
+
+#recipesContainer {
+  height: 70vh;
+  overflow-y: auto;
+}
+
+#recipesContainer::-webkit-scrollbar-track, .modal::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0.75vw #1c1c1c;
+  -webkit-box-shadow: inset 0 0 0.4vw #1c1c1c;
+  background-color: #1c1c1c;
+  border-radius: 0.75vw;
+}
+
+#recipesContainer::-webkit-scrollbar, .modal::-webkit-scrollbar {
+  width: 0.75vw;
+  border-radius: 0.75vw;
+  background-color: #1c1c1c;
+}
+
+#recipesContainer::-webkit-scrollbar-thumb, .modal::-webkit-scrollbar-thumb {
+  border: solid 0.02vw #4F5902;
+  background-color: #4F5902;
+  border-radius: 0.75vw;
+}
+
+.recipesList {
+  margin: auto;
+  width: 30%;
+  background: linear-gradient(to top, #3A5C3C 50%, #3A5C3C 50%);
+  border: solid 0.25vw #4F5902;
+  background-size: 100% 200%;
+  background-position: top left;
+  transition: all .2s ease-out;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.recipesList:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  background-position: bottom left;
+}
+
+.recipesList:active {
+  transform: scale(.9);
+}
+
+.recipesListTitle {
+  width: 90%;
+  text-align: center;
+  font-size: 1.5vw;
+}
+
+.recipesListIMG {
+  object-fit: cover;
+  width: 90%;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  overflow: auto;
+  background-color: #1c1c1c;
+  opacity: 0.98;
+}
+
+.modal_background {
+  position: fixed;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.recipe {
+  z-index: 5;
+
+  border: solid 0.25vw #4F5902;
+  background-color: #3A5C3C;
+  opacity: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10vh;
+  width: 50%;
+}
+
+.recipeTitle {
+  font-size: 2.5vw;
+  text-align: center;
+}
+
+.recipeImage {
+  object-fit: cover;
+  width: 80%;
+}
+
+.recipeSummary {
+  text-indent: 2vw;
+  width: 80%;
+  font-size: 1.25vw;
+}
+
+.recipeIngredients, .recipeExtraInfo {
+  width: 80%;
+  font-size: 1.25vw
+}
+
+.close {
+  position: absolute;
+  right: 3vw;
+  top: 3vw;
+  width: 3vw;
+  height: 3vw;
+  opacity: 0.7;
+}
+.close:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 1.40625vw;
+  content: ' ';
+  height: 3.09375vw;
+  width: 0.1875vw;
+  background-color: white;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+

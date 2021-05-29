@@ -10,9 +10,7 @@ router.use(express.json());
 router.use(express.urlencoded({extended: true}));
 
 router.post('/', auth.optional, (req, res, next) => {
-  // console.log(req.body);
   const {body: {user}} = req;
-
 
   if(!user.username) {
     return res.status(422).json({
@@ -65,8 +63,6 @@ router.post('/login', auth.optional, (req, res, next) => {
     if(err) {
       return next(err);
     }
-    debugger;
-    console.log(passportUser);
 
     if(passportUser) {
       const user = passportUser;

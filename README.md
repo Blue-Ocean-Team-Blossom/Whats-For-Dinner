@@ -22,7 +22,7 @@ Ian Ferrier
   git clone https://github.com/Blue-Ocean-Team-Blossom/Whats-For-Dinner.git
 ```
 
-### Read and follow the directions to running the Client and the API.
+### Read and follow the directions to running the Client and the API in their respective README.md's.
 
 ## Contributing
 

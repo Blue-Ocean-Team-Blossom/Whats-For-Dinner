@@ -122,7 +122,6 @@ app.get('/pantry', (req, res)=>{
   if (req.payload) {
     id = req.payload.id;
   }
-  console.log(id);
   controller.getPantry(id)
     .then(ingredients => {
       res.status(200).send(ingredients)
@@ -233,10 +232,8 @@ app.delete('/grocery', (req, res)=>{
 // ENDPOINTS FOR /ingredients
 
 app.get('/ingredients', (req, res) => {
-  // console.log(req.query);
   let {query} = req.query;
 
-  // console.log(`${process.env.RAPID_API_URL}/food/ingredients/search`);
   axios({
     method: 'get',
     url: `${process.env.RAPID_API_URL}/food/ingredients/autocomplete`,

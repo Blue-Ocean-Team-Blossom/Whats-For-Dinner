@@ -75,29 +75,21 @@ or
 ## Tech Stack
 
 **Server Dependencies:**
-- @babel/core
-- @babel/plugin-transform-runtime
-- @babel/preset-env
-- @babel/preset-react
-- @babel/runtime
-- babel
-- babel-loader
 - axios
 - dotenv
-- webpack
-- webpack-cli
-- forever
 - express
-
-**Additional Dev Deps:**
-- nodemon
--
+- express-jwt
+- express-session
+- forever
+- passport
+- passport-local
+- pg
+- postgresql
+- sequelize
 
 **Test Dependencies:**
--
-
-**Lint Dependencies (Tied in with Webpack):**
--
+- jest
+- supertest
 
 ## Running Tests
 
@@ -107,12 +99,9 @@ To run tests, run the following command:
   npm run test
 ```
 
-To get test coverage, run the following command:
-
-```bash
-    npm run test-cov
-```
-
 ## Contributing
 
 Contributions are always welcome!
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)

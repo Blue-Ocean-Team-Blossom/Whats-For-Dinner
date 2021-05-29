@@ -298,6 +298,12 @@ app.delete('/favorites', (req, res)=>{
     })
 });
 
-app.listen(port, () => {
+app.on('close', () => {
+  db.close();
+})
+
+const listen = app.listen(port, () => {
   console.log(`listening on port ${port}`)
 })
+
+module.exports = {app, listen};
